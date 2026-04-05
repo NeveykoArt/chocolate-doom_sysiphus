@@ -1,6 +1,6 @@
 Name:       chocolate-doom
 Version:    3.0.1
-Release:    alt1
+Release:    alt3
 Summary:    Conservative DOOM source port
 License:    GPL-2.0+
 Group:      Games/Arcade
@@ -53,6 +53,6 @@ find %{buildroot} -name '*.la' -delete
 /usr/share/doc/chocolate-strife/*
 
 %changelog
-* Sun Apr 05 2026 Artem Neveiko <aneveiko@altlinux.org> 3.0.1-alt1
+* Sun Apr 05 2026 Artem Neveiko <aneveiko@altlinux.org> 3.0.1-alt3
 - Initial package
 
