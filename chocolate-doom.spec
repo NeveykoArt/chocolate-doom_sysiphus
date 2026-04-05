@@ -4,37 +4,55 @@ Release:    alt1
 Summary:    Conservative DOOM source port
 License:    GPL-2.0+
 Group:      Games/Arcade
-Source0:    https://www.chocolate-doom.org/downloads/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:  gcc make libSDL2-devel libSDL2_mixer-devel libSDL2_net-devel libpng-devel
+Source0:    %{name}-%{version}.tar.xz
+BuildRequires:  gcc make autoconf automake libSDL2-devel libSDL2_mixer-devel libSDL2_net-devel libpng-devel
 
 %description
-Chocolate Doom — точная реплика оригинального DOOM для современных систем.
-Максимальная совместимость с оригиналом, включая баги и ограничения.
+Chocolate Doom - conservative DOOM source port for modern systems
 
 %prep
 %setup -q
 
 %build
+autoreconf -fi
 ./configure --prefix=/usr
 make
 
 %install
 make install DESTDIR=%{buildroot}
-
-# Убираем .la файлы, которые не нужны в Alt Linux
 find %{buildroot} -name '*.la' -delete
 
 %files
 /usr/bin/chocolate-doom
-/usr/bin/chocolate-setup
+/usr/bin/chocolate-heretic
+/usr/bin/chocolate-hexen
+/usr/bin/chocolate-strife
 /usr/bin/chocolate-server
-/usr/share/man/man6/chocolate-doom.6*
-/usr/share/man/man6/chocolate-setup.6*
-/usr/share/man/man5/chocolate-doom.cfg.5*
-/usr/share/applications/chocolate-doom.desktop
-/usr/share/icons/hicolor/*/apps/chocolate-doom.png
+/usr/bin/chocolate-doom-setup
+/usr/bin/chocolate-heretic-setup
+/usr/bin/chocolate-hexen-setup
+/usr/bin/chocolate-strife-setup
+/usr/share/applications/org.chocolate_doom.Doom.desktop
+/usr/share/applications/org.chocolate_doom.Heretic.desktop
+/usr/share/applications/org.chocolate_doom.Hexen.desktop
+/usr/share/applications/org.chocolate_doom.Strife.desktop
+/usr/share/applications/org.chocolate_doom.Setup.desktop
+/usr/share/applications/screensavers/org.chocolate_doom.Doom_Screensaver.desktop
+/usr/share/icons/hicolor/128x128/apps/chocolate-doom.png
+/usr/share/icons/hicolor/128x128/apps/chocolate-heretic.png
+/usr/share/icons/hicolor/128x128/apps/chocolate-hexen.png
+/usr/share/icons/hicolor/128x128/apps/chocolate-strife.png
+/usr/share/icons/hicolor/128x128/apps/chocolate-setup.png
+/usr/share/metainfo/org.chocolate_doom.Doom.metainfo.xml
+/usr/share/metainfo/org.chocolate_doom.Heretic.metainfo.xml
+/usr/share/metainfo/org.chocolate_doom.Hexen.metainfo.xml
+/usr/share/metainfo/org.chocolate_doom.Strife.metainfo.xml
 /usr/share/doc/chocolate-doom/*
+/usr/share/doc/chocolate-heretic/*
+/usr/share/doc/chocolate-hexen/*
+/usr/share/doc/chocolate-strife/*
 
 %changelog
 * Sun Apr 05 2026 Artem Neveiko <aneveiko@altlinux.org> 3.0.1-alt1
-- Initial package for Alt Linux
+- Initial package
+
